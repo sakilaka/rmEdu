@@ -119,4 +119,5 @@ Route::prefix('list')->group(function () {
     Route::get('all-universities', [FrontendUniversityController::class, "index"])->name('frontend.all_universities_list');
     Route::get('university-details/{id}', [FrontendUniversityController::class, "universityDetails"])->name('frontend.university_details');
     Route::post('question', [FrontendUniversityController::class, "question"])->name('frontend.question'); //frontend
+
 });

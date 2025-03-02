@@ -17,6 +17,7 @@ use App\Http\Controllers\Frontend\EventCartController;
 use App\Http\Controllers\Frontend\CourseUserSubscriptionsController;
 use App\Http\Controllers\Frontend\EbookCartController;
 use App\Http\Controllers\Frontend\StudentApplicationController;
+use App\Http\Controllers\Frontend\UniversityController;
 use App\Http\Controllers\User\UserController;
 
 Route::get('/clear-cache', function () {
@@ -281,3 +282,5 @@ Route::post('landing-form', [LandingPageController::class, 'landing_form_submit'
 
 Route::get('inquiry-form', [InQuiryController::class, 'show_inquiry_form'])->name('frontend.inquiry_form_show');
 Route::post('inquiry-form', [InQuiryController::class, 'store_inquiry_form_data'])->name('frontend.store_inquiry_form_data');
+
+Route::get('/filter-courses', [UniversityController::class, 'filterCourses'])->name('filter_courses');

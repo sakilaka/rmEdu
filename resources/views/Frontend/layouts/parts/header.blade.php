@@ -88,13 +88,13 @@
         </div>
     </div>
 
-    <div class="text-center py-2" style="background-color: var(--primary_background); width:100vw !important;">
-        <p class="text-white mb-0" style="font-size: 1rem;font-weight:500;font:family:'DM Sans', sans-serif;">
+    <div class="text-center" style="background-color: var(--primary_background); width:100vw !important;">
+        {{-- <p class="text-white mb-0" style="font-size: 1rem;font-weight:500;font:family:'DM Sans', sans-serif;">
             Want to launch innovative new courses -
             <a href=""
                 style="color:var(--tertiary_background);font-weight:500;font:family:'DM Sans', sans-serif;border-bottom:1px solid var(--tertiary_background);">We'll
                 Show You</a>
-        </p>
+        </p> --}}
     </div>
 
     <nav class="frontend-page navbar navbar-expand-lg bg-body-tertiary {{-- fixed-top --}} navbar-custom sticky sticky-light"

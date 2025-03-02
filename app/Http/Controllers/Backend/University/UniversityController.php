@@ -70,6 +70,7 @@ class UniversityController extends Controller
             $university->accommodation = $request->accommodation;
             $university->scholarships = $request->scholarships;
             $university->overview = $request->overview;
+            $university->fees_structure = $request->fees_structure;
             $university->academic_requirements = $request->academic_requirements;
             $university->english_requirements = $request->english_requirements;
             $university->budgets = $request->budgets;
@@ -154,6 +155,7 @@ class UniversityController extends Controller
             $university->accommodation = $request->accommodation;
             $university->scholarships = $request->scholarships;
             $university->overview = $request->overview;
+            $university->fees_structure = $request->fees_structure;
             $university->academic_requirements = $request->academic_requirements;
             $university->english_requirements = $request->english_requirements;
             $university->budgets = $request->budgets;

@@ -87,7 +87,7 @@
         width: 120px;
         height: 120px;
         border-radius: 50%;
-        border: 1px solid white;
+        /* border: 1px solid white; */
         overflow: hidden;
     }
 
@@ -111,7 +111,6 @@
         font-size: 48px;
         line-height: 1;
     }
-
 
     .uni-apply-cards-container .uni-apply-card .icon-wrapper i {
         font-size: 3rem;
@@ -140,6 +139,7 @@
         font-weight: 500;
     }
 </style>
+
 <div class="container uni-apply-container border" style="margin-top: 5rem;">
     <div class="text-center">
         <div class="uni-apply-subtitle d-flex justify-content-center align-items-center">

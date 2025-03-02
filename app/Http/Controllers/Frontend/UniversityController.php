@@ -268,6 +268,28 @@ class UniversityController extends Controller
         $data['university_courses'] = Course::where('university_id', $university->id)->latest()->get();
         return view('Frontend.university.university_details', $data);
     }
+
+    public function filterCourses(Request $request)
+{
+    $degree = $request->input('degree');
+    $universityId = $request->input('university_id');
+
+    // Fetch courses based on the selected degree and university ID
+    $courses = Course::where('university_id', $universityId)
+        ->when($degree, function ($query, $degree) {
+            return $query->whereHas('degree', function ($q) use ($degree) {
+                $q->where('name', 'like', '%' . $degree . '%');
+            });
+        })
+        ->with('degree', 'department', 'university') // Eager load related data
+        ->latest()
+        ->get();
+
+    // Return the filtered courses as JSON
+    return response()->json([
+        'courses' => $courses,
+    ]);
+}
     
 
     public function question(Request $request)

@@ -407,6 +407,12 @@
                                                     <textarea class="form-control editor" name="scholarships" style="height: 150px"></textarea>
                                                 </div>
                                             </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Fees Structure</label>
+                                                    <textarea class="form-control editor" name="fees_structure" style="height: 150px"></textarea>
+                                                </div>
+                                            </div>
                                             {{-- <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Academic Requirements</label>

@@ -13,6 +13,7 @@
 
         .university-nav {
             overflow-x: auto;
+            top: 0px!important;
         }
 
         .university-nav__list {

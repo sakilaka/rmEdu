@@ -332,10 +332,16 @@
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
+                                                    <label>Fees Structure</label>
+                                                    <textarea class="form-control editor" name="fees_structure" style="height: 150px">{{ $university->fees_structure }}</textarea>
+                                                </div>
+                                            </div>
+                                            {{-- <div class="col-md-12">
+                                                <div class="form-group">
                                                     <label>Academic Requirements</label>
                                                     <textarea class="form-control editor" name="academic_requirements" style="height: 150px">{{ $university->academic_requirements }}</textarea>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>English Requirements</label>
