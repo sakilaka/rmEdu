@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ asset('backend/assets/vendors/summernote/dist/summernote-bs4.css') }}">
     <title>{{ env('APP_NAME') }} | Add University Program</title>
     <style>
-        .select2-container--default .select2-selection--multiple .select2-selection__rendered{
+        .select2-container--default .select2-selection--multiple .select2-selection__rendered {
             overflow-y: auto;
         }
     </style>
@@ -38,62 +38,57 @@
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Department <span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <select class="form-control form-control-lg" id="department"
-                                                        name="department_id" required>
-                                                        <option value="">Select Department</option>
-                                                        @foreach ($departments as $department)
-                                                            <option value="{{ $department->id }}">
-                                                                {{ $department->name }}</option>
+                                                    <label>Universities <span class="text-danger">*</span></label>
+                                                    <select id="university-select"
+                                                        class="form-control form-control-lg select2"
+                                                        name="university_id[]" required>
+                                                        <option value="">Select All</option>
+                                                        <!-- Select All option -->
+                                                        @foreach ($universities as $university)
+                                                            <option value="{{ $university->id }}">
+                                                                {{ $university->name }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Department <span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <select class="form-control form-control-lg select2" id="departments"
+                                                        name="department_id" required multiple>
+                                                        <option value="">Select Department</option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Degree <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <select class="form-control form-control-lg" id="degree"
-                                                        name="degree_id" required>
+                                                    <select class="form-control form-control-lg select2" id="degrees"
+                                                        name="degree_id" required multiple>
                                                         <option value="">Select Degree</option>
-                                                        @foreach ($degrees as $degree)
-                                                            <option value="{{ $degree->id }}">
-                                                                {{ $degree->name }}</option>
-                                                        @endforeach
+
                                                     </select>
                                                 </div>
                                             </div>
 
-                                            {{-- <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>University <span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <select class="form-control form-control-lg" name="university_id"
-                                                        required>
-                                                        <option value="">Select University</option>
-                                                        @foreach ($universities as $university)
-                                                            <option value="{{ $university->id }}">
-                                                                {{ $university->name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div> --}}
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Universities <span class="text-danger">*</span></label>
-                                                    <select id="university-select" class="form-control form-control-lg select2" name="university_id[]" multiple="multiple" required>
-                                                        <option value="all">Select All</option> <!-- Select All option -->
-                                                        @foreach ($universities as $university)
-                                                            <option value="{{ $university->id }}">{{ $university->name }}</option>
-                                                        @endforeach
+                                                    <label>Section <span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <select id="section" class="form-control form-control-lg select2"
+                                                        name="section_id" required multiple>
+                                                        <option value="">Select Section</option>
+
                                                     </select>
                                                 </div>
                                             </div>
-                                            
-                                            
-                                            
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
@@ -103,59 +98,14 @@
                                                         placeholder="Enter Course Name" class="form-control" required>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Section <span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <select class="form-control form-control-lg" name="section_id"
-                                                        required>
-                                                        <option value="">Select Section</option>
-                                                        @foreach ($sections as $section)
-                                                            <option value="{{ $section->id }}">{{ $section->name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            {{-- <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Consultancy Fee <span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <input type="number" min="0" name="consultancy_fee"
-                                                        placeholder="Enter Consultancy Fee" class="form-control"
-                                                        required>
-                                                </div>
-                                            </div> --}}
-                                            {{-- <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Yearly Fee <span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <input type="number" min="0" name="year_fee"
-                                                        placeholder="Enter Yearly Course Fee" class="form-control"
-                                                        required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Program Type <span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <select class="form-control form-control-lg" name="course_type"
-                                                        required>
-                                                        <option value="">Select Course type</option>
-                                                        <option value="1">Our Top Picks</option>
-                                                        <option value="2">Most Popular</option>
-                                                        <option value="3">Fastest Admissions</option>
-                                                        <option value="4">Highest Rating</option>
-                                                        <option value="5">Top Ranked</option>
-                                                    </select>
-                                                </div>
-                                            </div> --}}
+
+
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Course Duration <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <input type="text" name="course_duration"
+                                                    <input type="text" id="course_duration" name="course_duration"
                                                         placeholder="Enter Course Duration" class="form-control"
                                                         required>
                                                 </div>
@@ -191,7 +141,7 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                
+
                                             </div>
 
                                             {{-- <div class="col-md-4">
@@ -217,7 +167,7 @@
                                                     </select>
                                                 </div>
                                             </div> --}}
-                                            
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Related Programs</label>
@@ -231,14 +181,15 @@
                                                     </select>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Video URL</label>
-                                                    <input type="text" class="form-control"
-                                                        name="trailer_video_url"
+                                                    <input type="text" class="form-control" name="trailer_video_url"
                                                         placeholder="Enter Youtube Video link" />
                                                 </div>
                                             </div>
+
                                             {{-- <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Pre Requisites</label>
@@ -258,6 +209,7 @@
                                                     </div>
                                                 </div>
                                             </div> --}}
+                                            
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Introduction <span class="text-danger"
@@ -303,32 +255,106 @@
 
     <script src="{{ asset('backend/assets/js/dropify.js') }}"></script>
     <script>
-   
-    $(document).ready(function () {
-        var selectElement = $('#university-select');
+        $(document).ready(function() {
+            var selectElement = $('#university-select');
 
-        selectElement.select2({
-            placeholder: "Select Universities",
-            allowClear: true
+            selectElement.select2({
+                placeholder: "Select Universities",
+                allowClear: true
+            });
+
         });
-
-        // "Select All" functionality
-        selectElement.on('select2:select', function (e) {
-            if (e.params.data.id === "all") {
-                selectElement.find("option").prop("selected", true);
-                selectElement.trigger("change");
-            }
-        });
-
-        selectElement.on('select2:unselect', function (e) {
-            if (e.params.data.id === "all") {
-                selectElement.find("option").prop("selected", false);
-                selectElement.trigger("change");
-            }
-        });
-    });
-
     </script>
+
+
+    <script>
+        $(document).ready(function() {
+            $('#university-select').on('change', function() {
+                var universityId = $(this).val();
+
+                if (universityId) {
+                    $.ajax({
+                        url: "{{ route('get.details.by.university') }}", // Single API for all data
+                        type: "GET",
+                        data: {
+                            university_id: universityId
+                        },
+                        success: function(response) {
+                            console.log(response);
+
+                            // Reset all fields
+                            $('#departments, #degrees, #section').empty().append(
+                                '<option value="">Select Option</option>');
+
+                            // Set Degrees
+                            var selectedDegrees = [];
+                            $.each(response.degrees, function(key, value) {
+                                $('#degrees').append('<option value="' + value.id +
+                                    '">' + value.name + '</option>');
+                                selectedDegrees.push(value.id);
+                            });
+                            $('#degrees').val(selectedDegrees).trigger('change');
+
+                            // Set Departments
+                            var selectedDepartments = [];
+                            $.each(response.departments, function(key, value) {
+                                $('#departments').append('<option value="' + value.id +
+                                    '">' + value.name + '</option>');
+                                selectedDepartments.push(value.id);
+                            });
+                            $('#departments').val(selectedDepartments).trigger('change');
+
+                            // Set Sections
+                            var selectedSections = [];
+                            $.each(response.sections, function(key, value) {
+                                $('#section').append('<option value="' + value.id +
+                                    '">' + value.name + '</option>');
+                                selectedSections.push(value.id);
+                            });
+                            $('#section').val(selectedSections).trigger('change');
+
+                            $('#course_duration').val(response.duration).trigger('change');
+
+
+                        }
+                    });
+                } else {
+                    // Clear fields if no university selected
+                    $('#department, #degree, #section').empty().append(
+                        '<option value="">Select Option</option>');
+                    $('#department, #degree, #section').val([]).trigger('change');
+                }
+            });
+        });
+    </script>
+
+
+
+    {{-- <script>
+        $(document).ready(function() {
+            var selectElement = $('#university-select');
+
+            selectElement.select2({
+                placeholder: "Select Universities",
+                allowClear: true
+            });
+
+            selectElement.on('select2:select', function(e) {
+                if (e.params.data.id === "all") {
+                    selectElement.find("option").prop("selected", true);
+                    selectElement.trigger("change");
+                }
+            });
+
+            selectElement.on('select2:unselect', function(e) {
+                if (e.params.data.id === "all") {
+                    selectElement.find("option").prop("selected", false);
+                    selectElement.trigger("change");
+                }
+            });
+        });
+    </script> --}}
+
     <script>
         $('.multipleSelect2Search').select2();
         $('.select2').select2();

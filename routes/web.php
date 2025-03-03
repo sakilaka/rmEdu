@@ -229,7 +229,7 @@ Route::middleware(['accessLogin'])->group(function () {
     Route::get('city/university/course_list/{id}', [FrontendController::class, 'cityUniversityCourseList'])->name('frontend.city.university_course_list');
     Route::get('applications', [StudentApplicationController::class, 'applications'])->name('frontend.applications')->middleware(['userCheck']);
 
-    
+
 
     Route::post('consultants-student-appliction-list-ajax', [StudentApplicationController::class, "indexAjax"])->name('consultants.student_appliction_list_ajax');
 
@@ -284,3 +284,6 @@ Route::get('inquiry-form', [InQuiryController::class, 'show_inquiry_form'])->nam
 Route::post('inquiry-form', [InQuiryController::class, 'store_inquiry_form_data'])->name('frontend.store_inquiry_form_data');
 
 Route::get('/filter-courses', [UniversityController::class, 'filterCourses'])->name('filter_courses');
+
+
+Route::get('/get-details-by-university', [UniversityController::class, 'getDetailsByUniversity'])->name('get.details.by.university');

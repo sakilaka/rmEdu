@@ -1030,10 +1030,12 @@ class FrontendController extends Controller
         $data['departments'] = Department::all();
         $data['sections'] = Section::orderBy('id', 'desc')->get();
         $data['continents'] = Continent::all();
+        // $data['courseCount'] = University::withCount('courses')->get();
 
-        $data['universities'] = $universities->orderBy('app_deadline', 'asc')->paginate(10);
-        // return $data;    
-        // return $data['universities'];    
+
+        $data['universities'] = $universities->withCount('courses')->orderBy('app_deadline', 'asc')->paginate(10);
+        // return $data;
+        // return $data['courseCount'];
 
         return view('Frontend.university.university_course_list', $data);
     }

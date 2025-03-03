@@ -71,6 +71,7 @@
             /* border-radius: 50%; */
         }
     </style>
+    
 @endsection
 
 @section('main_content')

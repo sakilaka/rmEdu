@@ -855,7 +855,7 @@
                                 </select>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
 
@@ -871,10 +871,9 @@
 
                             <div class="wrapper-result-tags-and-sort">
                                 <div class="tags searchingTags_wrapper mb-0">
-                                    <a style="" class="clear-filter">Clear</a>
+                                    <a href="<?php echo e(route('frontend.university_course_list')); ?>" class="clear-filter" onclick="console.log('Clicked')">Clear</a>
                                 </div>
 
-                                <form id="filter-form" method="POST" style="display:none"></form>
                             </div>
                         </div>
 
@@ -909,6 +908,9 @@
 
                                                                         </span>
                                                                     </h4>
+
+                                                                    <p class="fw-bold"><?php echo e($university->courses_count); ?> programs</p>
+
                                                                     <p class="school-name-desktop">
                                                                         <div class="mobile-title">
                                                                             <div class="d-flex flex-column">
@@ -1102,11 +1104,11 @@
             });
         });
 
-        $(document).on('click', '.clear-filter', function(e) {
-            e.preventDefault();
-            $('select').val(''); // Clear all select elements
-            applyFilters(); // Reapply filters (which will now be empty)
-        });
+        // $(document).on('click', '.clear-filter', function(e) {
+        //     e.preventDefault();
+        //     $('select').val('');
+        //     applyFilters();
+        // });
     </script>
 
 
@@ -1185,7 +1187,7 @@
                 $('#applyFilter').click();
             })
 
-            //filter toggle 
+            //filter toggle
             $(".filter-open").on("click", function() {
                 if (window.innerWidth < 768) {
                     $(".wrapper-filters").css({
@@ -1267,7 +1269,7 @@
             })
         });
 
-        //Sort subjects on the sidebar alphabetically 
+        //Sort subjects on the sidebar alphabetically
         var instance = $('#subjects').drizzle({
             child: '.subject' // child element
         });

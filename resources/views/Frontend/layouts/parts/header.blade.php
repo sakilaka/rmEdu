@@ -98,7 +98,7 @@
     </div>
 
     <nav class="frontend-page navbar navbar-expand-lg bg-body-tertiary {{-- fixed-top --}} navbar-custom sticky sticky-light"
-        id="navbar" style="padding: 0 20px !important">
+        id="navbar" style="padding: 0 20px !important; height: 90px;">
         <div class="container">
             <a class="navbar-brand logo" href="{{ route('home') }}">
                 <img src="{{ @$header_logo->header_image == '' ? @$header_logo->no_image : @$header_logo->header_image_show }}"

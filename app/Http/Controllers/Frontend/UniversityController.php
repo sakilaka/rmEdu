@@ -13,7 +13,10 @@ use Illuminate\Http\Request;
 
 use App\Models\Continent;
 use App\Models\Course;
+use App\Models\Degree;
+use App\Models\Department;
 use App\Models\Review;
+use App\Models\Section;
 use App\Models\State;
 use App\Models\User;
 
@@ -290,7 +293,7 @@ class UniversityController extends Controller
         'courses' => $courses,
     ]);
 }
-    
+
 
     public function question(Request $request)
     {
@@ -304,5 +307,33 @@ class UniversityController extends Controller
         $qus->type = $request->type;
         $qus->save();
         return redirect()->back()->with('message', 'Your message is send successfully, we will responce as soon as possible. Thank you.');
+    }
+
+
+
+    public function getDetailsByUniversity(Request $request)
+    {
+        $university = University::find($request->university_id);
+
+        if (!$university) {
+            return response()->json(['departments' => [], 'degrees' => [], 'sections' => []]);
+        }
+
+        // Fetch related IDs
+        $degreeIds = explode(',', $university->degree_id);
+        $departmentIds = explode(',', $university->department_id);
+        $sectionIds = explode(',', $university->section_id);
+
+        // Get records
+        $degrees = Degree::whereIn('id', $degreeIds)->get(['id', 'name']);
+        $departments = Department::whereIn('id', $departmentIds)->get(['id', 'name']);
+        $sections = Section::whereIn('id', $sectionIds)->get(['id', 'name']);
+
+        return response()->json([
+            'degrees' => $degrees,
+            'departments' => $departments,
+            'sections' => $sections,
+            'duration' => $university->duration
+        ]);
     }
 }

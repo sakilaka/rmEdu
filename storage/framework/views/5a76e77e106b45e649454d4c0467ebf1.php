@@ -93,7 +93,7 @@
     </div>
 
     <nav class="frontend-page navbar navbar-expand-lg bg-body-tertiary  navbar-custom sticky sticky-light"
-        id="navbar" style="padding: 0 20px !important">
+        id="navbar" style="padding: 0 20px !important; height: 90px;">
         <div class="container">
             <a class="navbar-brand logo" href="<?php echo e(route('home')); ?>">
                 <img src="<?php echo e(@$header_logo->header_image == '' ? @$header_logo->no_image : @$header_logo->header_image_show); ?>"

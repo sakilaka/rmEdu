@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="<?php echo e(asset('backend/assets/vendors/summernote/dist/summernote-bs4.css')); ?>">
     <title><?php echo e(env('APP_NAME')); ?> | Add University Program</title>
     <style>
-        .select2-container--default .select2-selection--multiple .select2-selection__rendered{
+        .select2-container--default .select2-selection--multiple .select2-selection__rendered {
             overflow-y: auto;
         }
     </style>
@@ -38,49 +38,58 @@
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Department <span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <select class="form-control form-control-lg" id="department"
-                                                        name="department_id" required>
-                                                        <option value="">Select Department</option>
-                                                        <?php $__currentLoopData = $departments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $department): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                            <option value="<?php echo e($department->id); ?>">
-                                                                <?php echo e($department->name); ?></option>
+                                                    <label>Universities <span class="text-danger">*</span></label>
+                                                    <select id="university-select"
+                                                        class="form-control form-control-lg select2"
+                                                        name="university_id[]" required>
+                                                        <option value="">Select All</option>
+                                                        <!-- Select All option -->
+                                                        <?php $__currentLoopData = $universities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $university): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                            <option value="<?php echo e($university->id); ?>">
+                                                                <?php echo e($university->name); ?>
+
+                                                            </option>
                                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                     </select>
                                                 </div>
                                             </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Department <span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <select class="form-control form-control-lg select2" id="departments"
+                                                        name="department_id" required multiple>
+                                                        <option value="">Select Department</option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Degree <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <select class="form-control form-control-lg" id="degree"
-                                                        name="degree_id" required>
+                                                    <select class="form-control form-control-lg select2" id="degrees"
+                                                        name="degree_id" required multiple>
                                                         <option value="">Select Degree</option>
-                                                        <?php $__currentLoopData = $degrees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $degree): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                            <option value="<?php echo e($degree->id); ?>">
-                                                                <?php echo e($degree->name); ?></option>
-                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
                                                     </select>
                                                 </div>
                                             </div>
 
-                                            
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Universities <span class="text-danger">*</span></label>
-                                                    <select id="university-select" class="form-control form-control-lg select2" name="university_id[]" multiple="multiple" required>
-                                                        <option value="all">Select All</option> <!-- Select All option -->
-                                                        <?php $__currentLoopData = $universities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $university): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                            <option value="<?php echo e($university->id); ?>"><?php echo e($university->name); ?></option>
-                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                    <label>Section <span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <select id="section" class="form-control form-control-lg select2"
+                                                        name="section_id" required multiple>
+                                                        <option value="">Select Section</option>
+
                                                     </select>
                                                 </div>
                                             </div>
-                                            
-                                            
-                                            
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
@@ -90,29 +99,14 @@
                                                         placeholder="Enter Course Name" class="form-control" required>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Section <span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <select class="form-control form-control-lg" name="section_id"
-                                                        required>
-                                                        <option value="">Select Section</option>
-                                                        <?php $__currentLoopData = $sections; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $section): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                            <option value="<?php echo e($section->id); ?>"><?php echo e($section->name); ?>
 
-                                                            </option>
-                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            
-                                            
+
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Course Duration <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <input type="text" name="course_duration"
+                                                    <input type="text" id="course_duration" name="course_duration"
                                                         placeholder="Enter Course Duration" class="form-control"
                                                         required>
                                                 </div>
@@ -134,11 +128,11 @@
                                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                     </select>
                                                 </div>
-                                                
+
                                             </div>
 
                                             
-                                            
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Related Programs</label>
@@ -156,8 +150,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Video URL</label>
-                                                    <input type="text" class="form-control"
-                                                        name="trailer_video_url"
+                                                    <input type="text" class="form-control" name="trailer_video_url"
                                                         placeholder="Enter Youtube Video link" />
                                                 </div>
                                             </div>
@@ -207,32 +200,83 @@
 
     <script src="<?php echo e(asset('backend/assets/js/dropify.js')); ?>"></script>
     <script>
-   
-    $(document).ready(function () {
-        var selectElement = $('#university-select');
+        $(document).ready(function() {
+            var selectElement = $('#university-select');
 
-        selectElement.select2({
-            placeholder: "Select Universities",
-            allowClear: true
+            selectElement.select2({
+                placeholder: "Select Universities",
+                allowClear: true
+            });
+
         });
-
-        // "Select All" functionality
-        selectElement.on('select2:select', function (e) {
-            if (e.params.data.id === "all") {
-                selectElement.find("option").prop("selected", true);
-                selectElement.trigger("change");
-            }
-        });
-
-        selectElement.on('select2:unselect', function (e) {
-            if (e.params.data.id === "all") {
-                selectElement.find("option").prop("selected", false);
-                selectElement.trigger("change");
-            }
-        });
-    });
-
     </script>
+
+
+    <script>
+        $(document).ready(function() {
+            $('#university-select').on('change', function() {
+                var universityId = $(this).val();
+
+                if (universityId) {
+                    $.ajax({
+                        url: "<?php echo e(route('get.details.by.university')); ?>", // Single API for all data
+                        type: "GET",
+                        data: {
+                            university_id: universityId
+                        },
+                        success: function(response) {
+                            console.log(response);
+
+                            // Reset all fields
+                            $('#departments, #degrees, #section').empty().append(
+                                '<option value="">Select Option</option>');
+
+                            // Set Degrees
+                            var selectedDegrees = [];
+                            $.each(response.degrees, function(key, value) {
+                                $('#degrees').append('<option value="' + value.id +
+                                    '">' + value.name + '</option>');
+                                selectedDegrees.push(value.id);
+                            });
+                            $('#degrees').val(selectedDegrees).trigger('change');
+
+                            // Set Departments
+                            var selectedDepartments = [];
+                            $.each(response.departments, function(key, value) {
+                                $('#departments').append('<option value="' + value.id +
+                                    '">' + value.name + '</option>');
+                                selectedDepartments.push(value.id);
+                            });
+                            $('#departments').val(selectedDepartments).trigger('change');
+
+                            // Set Sections
+                            var selectedSections = [];
+                            $.each(response.sections, function(key, value) {
+                                $('#section').append('<option value="' + value.id +
+                                    '">' + value.name + '</option>');
+                                selectedSections.push(value.id);
+                            });
+                            $('#section').val(selectedSections).trigger('change');
+
+                            $('#course_duration').val(response.duration).trigger('change');
+
+
+                        }
+                    });
+                } else {
+                    // Clear fields if no university selected
+                    $('#department, #degree, #section').empty().append(
+                        '<option value="">Select Option</option>');
+                    $('#department, #degree, #section').val([]).trigger('change');
+                }
+            });
+        });
+    </script>
+
+
+
+    
+
     <script>
         $('.multipleSelect2Search').select2();
         $('.select2').select2();

@@ -112,7 +112,6 @@
         line-height: 1;
     }
 
-
     .uni-apply-cards-container .uni-apply-card .icon-wrapper i {
         font-size: 3rem;
         color: var(--primary_background);
@@ -140,6 +139,7 @@
         font-weight: 500;
     }
 </style>
+
 <div class="container uni-apply-container border" style="margin-top: 5rem;">
     <div class="text-center">
         <div class="uni-apply-subtitle d-flex justify-content-center align-items-center">
