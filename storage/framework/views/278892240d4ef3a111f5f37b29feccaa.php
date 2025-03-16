@@ -2,17 +2,17 @@
 <html lang="en">
 
 <head>
-    @include('Backend.components.head')
-    <link rel="stylesheet" href="{{ asset('backend/assets/vendors/summernote/dist/summernote-bs4.css') }}">
-    <title>{{ env('APP_NAME') }} | Add Event</title>
+    <?php echo $__env->make('Backend.components.head', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <link rel="stylesheet" href="<?php echo e(asset('backend/assets/vendors/summernote/dist/summernote-bs4.css')); ?>">
+    <title><?php echo e(env('APP_NAME')); ?> | Add Event</title>
 </head>
 
 <body>
     <div class="container-scroller">
-        @include('Backend.components.navbar')
+        <?php echo $__env->make('Backend.components.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
         <div class="container-fluid page-body-wrapper">
-            @include('Backend.components.sidebar')
+            <?php echo $__env->make('Backend.components.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
             <div class="main-panel">
                 <div class="content-wrapper">
@@ -22,7 +22,7 @@
                         </h3>
 
                         <nav aria-label="breadcrumb">
-                            <a href="{{ route('admin.event.index') }}" class="btn btn-primary btn-fw">
+                            <a href="<?php echo e(route('admin.event.index')); ?>" class="btn btn-primary btn-fw">
                                 <i class="fa fa-eye" aria-hidden="true"></i>
                                 View All</a>
                         </nav>
@@ -32,9 +32,9 @@
                         <div class="col-md-12 m-auto grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <form class="forms-sample" action="{{ route('admin.event.store') }}" method="POST"
+                                    <form class="forms-sample" action="<?php echo e(route('admin.event.store')); ?>" method="POST"
                                         enctype="multipart/form-data">
-                                        @csrf
+                                        <?php echo csrf_field(); ?>
 
                                         <div class="row mb-3">
                                             <div class="col-sm-12 col-md-6">
@@ -78,7 +78,7 @@
                                                     <div
                                                         class="col-sm-6 d-flex justify-content-center align-items-center">
                                                         <div class="px-3">
-                                                            <img src="{{ asset('frontend/images/No-image.jpg') }}"
+                                                            <img src="<?php echo e(asset('frontend/images/No-image.jpg')); ?>"
                                                                 alt="" class="img-fluid"
                                                                 style="border-radius: 10px; max-height: 200px !important;"
                                                                 id="avatar_preview">
@@ -107,10 +107,11 @@
                                                     <select id="cat" class="form-control form-control-lg"
                                                         name="category_id">
                                                         <option value="">Select Category</option>
-                                                        @foreach ($categorys as $category)
-                                                            <option value="{{ $category->id }}">{{ $category->name }}
+                                                        <?php $__currentLoopData = $categorys; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                            <option value="<?php echo e($category->id); ?>"><?php echo e($category->name); ?>
+
                                                             </option>
-                                                        @endforeach
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                     </select>
                                                 </div>
                                             </div>
@@ -152,10 +153,11 @@
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <select class="form-control form-control-lg" name="language_id">
                                                         <option value="">Select Language</option>
-                                                        @foreach ($languages as $language)
-                                                            <option value="{{ $language->id }}">{{ $language->name }}
+                                                        <?php $__currentLoopData = $languages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $language): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                            <option value="<?php echo e($language->id); ?>"><?php echo e($language->name); ?>
+
                                                             </option>
-                                                        @endforeach
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                     </select>
                                                 </div>
                                             </div>
@@ -263,25 +265,26 @@
                                                                 <select class="form-control form-control-lg"
                                                                     name="instrutor_id[]" required>
                                                                     <option>Select Speakers</option>
-                                                                    @foreach ($instrutors as $instrutor)
-                                                                        <option value="{{ $instrutor->id }}">
-                                                                            {{ $instrutor->name }}</option>
-                                                                    @endforeach
+                                                                    <?php $__currentLoopData = $instrutors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $instrutor): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                        <option value="<?php echo e($instrutor->id); ?>">
+                                                                            <?php echo e($instrutor->name); ?></option>
+                                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                                 </select>
                                                                 <select class="form-control form-control-lg ml-1"
                                                                     name="day_id[]" required>
                                                                     <option>Select Day</option>
-                                                                    @php
+                                                                    <?php
                                                                         $days = [];
                                                                         for ($i = 1; $i <= 31; $i++) {
                                                                             $days[] = $i;
                                                                         }
-                                                                    @endphp
-                                                                    @foreach ($days as $item)
-                                                                        <option value="{{ $item }}">
-                                                                            Day {{ $item }}
+                                                                    ?>
+                                                                    <?php $__currentLoopData = $days; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                        <option value="<?php echo e($item); ?>">
+                                                                            Day <?php echo e($item); ?>
+
                                                                         </option>
-                                                                    @endforeach
+                                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                                 </select>
                                                                 <input type="date" name="scheduledate[]"
                                                                     class="ml-1 form-control" required>
@@ -317,14 +320,14 @@
                     </div>
                 </div>
 
-                @include('Backend.components.footer')
+                <?php echo $__env->make('Backend.components.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             </div>
         </div>
     </div>
 
-    @include('Backend.components.script')
+    <?php echo $__env->make('Backend.components.script', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-    <script src="{{ asset('backend/lib/summernote/summernote-bs4.min.js') }}"></script>
+    <script src="<?php echo e(asset('backend/lib/summernote/summernote-bs4.min.js')); ?>"></script>
     <script>
         $('#summernote').summernote({
             placeholder: 'Write something...',
@@ -332,7 +335,7 @@
             height: 150
         });
     </script>
-    <script src="{{ asset('backend/assets/js/dropify.js') }}"></script>
+    <script src="<?php echo e(asset('backend/assets/js/dropify.js')); ?>"></script>
     <script>
         $('#avatar_upload').on('change', function(e) {
             var fileInput = $(this)[0];
@@ -361,25 +364,26 @@
                         <select class="form-control form-control-lg"
                             name="instrutor_id[]" required>
                             <option>Select Speakers</option>
-                            @foreach ($instrutors as $instrutor)
-                                <option value="{{ $instrutor->id }}">
-                                    {{ $instrutor->name }}</option>
-                            @endforeach
+                            <?php $__currentLoopData = $instrutors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $instrutor): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option value="<?php echo e($instrutor->id); ?>">
+                                    <?php echo e($instrutor->name); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                         <select class="form-control form-control-lg ml-1"
                             name="day_id[]" required>
                             <option>Select Day</option>
-                            @php
+                            <?php
                                 $days = [];
                                 for ($i = 1; $i <= 31; $i++) {
                                     $days[] = $i;
                                 }
-                            @endphp
-                            @foreach ($days as $item)
-                                <option value="{{ $item }}">
-                                    Day {{ $item }}
+                            ?>
+                            <?php $__currentLoopData = $days; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option value="<?php echo e($item); ?>">
+                                    Day <?php echo e($item); ?>
+
                                 </option>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                         <input type="date" name="scheduledate[]"
                             class="ml-1 form-control" required>
@@ -446,3 +450,4 @@
 </body>
 
 </html>
+<?php /**PATH C:\laragon\www\rminternational-20241015\resources\views/Backend/events/event/create.blade.php ENDPATH**/ ?>

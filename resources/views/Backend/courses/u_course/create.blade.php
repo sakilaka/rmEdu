@@ -41,8 +41,8 @@
                                                     <label>Universities <span class="text-danger">*</span></label>
                                                     <select id="university-select"
                                                         class="form-control form-control-lg select2"
-                                                        name="university_id[]" required>
-                                                        <option value="">Select All</option>
+                                                        name="university_id[]" required multiple>
+                                                        <option value="all">Select All</option>
                                                         <!-- Select All option -->
                                                         @foreach ($universities as $university)
                                                             <option value="{{ $university->id }}">
@@ -57,9 +57,14 @@
                                                 <div class="form-group">
                                                     <label>Department <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <select class="form-control form-control-lg select2" id="departments"
+                                                    <select class="form-control form-control-lg select2" id=""
                                                         name="department_id" required multiple>
                                                         <option value="">Select Department</option>
+                                                         @foreach ($departments as $department)
+                                                            <option value="{{ $department->id }}">
+                                                                {{ $department->name }}
+                                                            </option>
+                                                        @endforeach
 
                                                     </select>
                                                 </div>
@@ -69,9 +74,14 @@
                                                 <div class="form-group">
                                                     <label>Degree <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <select class="form-control form-control-lg select2" id="degrees"
+                                                    <select class="form-control form-control-lg select2" id=""
                                                         name="degree_id" required multiple>
                                                         <option value="">Select Degree</option>
+                                                       @foreach ($degrees as $degree)
+                                                            <option value="{{ $degree->id }}">
+                                                                {{ $degree->name }}
+                                                            </option>
+                                                        @endforeach
 
                                                     </select>
                                                 </div>
@@ -82,9 +92,14 @@
                                                 <div class="form-group">
                                                     <label>Section <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <select id="section" class="form-control form-control-lg select2"
+                                                    <select id="" class="form-control form-control-lg select2"
                                                         name="section_id" required multiple>
                                                         <option value="">Select Section</option>
+                                                        @foreach ($sections as $section)
+                                                            <option value="{{ $section->id }}">
+                                                                {{ $section->name }}
+                                                            </option>
+                                                        @endforeach
 
                                                     </select>
                                                 </div>
@@ -209,7 +224,7 @@
                                                     </div>
                                                 </div>
                                             </div> --}}
-                                            
+
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Introduction <span class="text-danger"
@@ -267,7 +282,7 @@
     </script>
 
 
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             $('#university-select').on('change', function() {
                 var universityId = $(this).val();
@@ -326,11 +341,11 @@
                 }
             });
         });
-    </script>
+    </script> --}}
 
 
 
-    {{-- <script>
+    <script>
         $(document).ready(function() {
             var selectElement = $('#university-select');
 
@@ -353,7 +368,7 @@
                 }
             });
         });
-    </script> --}}
+    </script>
 
     <script>
         $('.multipleSelect2Search').select2();

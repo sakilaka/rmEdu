@@ -1001,25 +1001,23 @@ class FrontendController extends Controller
         }
 
         if ($request->has('language') && $request->language != '') {
-            $universities->where('language_id', 'LIKE', '%' . $request->language . '%');
+            $universities->orWhere('language_id', 'LIKE', '%' . $request->language . '%');
         }
 
-        // dd($request->department);
-
         if ($request->has('department') && $request->department != '') {
-            $universities->where('department_id', 'LIKE', '%' . $request->department . '%');
+            $universities->orWhere('department_id', 'LIKE', '%' . $request->department . '%');
         }
 
         if ($request->has('session') && $request->session != '') {
-            $universities->where('section_id', 'LIKE', '%' . $request->session . '%');
+            $universities->orWhere('section_id', 'LIKE', '%' . $request->session . '%');
         }
 
         if ($request->has('continent') && $request->continent != '') {
-            $universities->where('continent_id', $request->continent);
+            $universities->orWhere('continent_id', $request->continent);
         }
 
         if ($request->has('country') && $request->country != '') {
-            $universities->where('country_id', $request->country);
+            $universities->orWhere('country_id', $request->country);
         }
 
         $data['degrees'] = Degree::all();
@@ -1030,15 +1028,12 @@ class FrontendController extends Controller
         $data['departments'] = Department::all();
         $data['sections'] = Section::orderBy('id', 'desc')->get();
         $data['continents'] = Continent::all();
-        // $data['courseCount'] = University::withCount('courses')->get();
 
-
-        $data['universities'] = $universities->withCount('courses')->orderBy('app_deadline', 'asc')->paginate(10);
-        // return $data;
-        // return $data['courseCount'];
+        $data['universities'] = $universities->withCount('courses')->orderBy('star', 'desc')->orderBy('app_deadline', 'asc')->paginate(10);
 
         return view('Frontend.university.university_course_list', $data);
     }
+
 
     public function terms(Request $request)
     {

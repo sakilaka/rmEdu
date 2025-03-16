@@ -65,6 +65,7 @@ class UniversityController extends Controller
             $university->next_start_date = $request->next_start_date;
             $university->yearly_tuition = $request->yearly_tuition;
             $university->duration = $request->duration;
+            $university->star = $request->star;
             $university->address = $request->address;
             $university->admissions_process = $request->admissions_process;
             $university->accommodation = $request->accommodation;
@@ -129,6 +130,12 @@ class UniversityController extends Controller
         $data['cities'] = City::where('state_id', @$university->state->id)->get();
         $data['states'] = State::where('country_id', @$university->country->id)->get();
         $data['countries'] = Country::where('continent_id', @$university->continent->id)->get();
+
+        $data['degrees'] = Degree::all();
+        $data['departments'] = Department::all();
+        $data['languages'] = CourseLanguage::all();
+        $data['sections']  = Section::orderBy('id', 'desc')->get();
+
         $data["university"] = $university;
         return view("Backend.university.update", $data);
     }
@@ -150,6 +157,17 @@ class UniversityController extends Controller
             $university->country_id = $request->country_id;
             // $university->state_id = $request->state_id;
             // $university->city_id = $request->city_id;
+            $university->degree_id = implode(',', $request->degree_id);
+            $university->department_id = implode(',', $request->department_id);
+            $university->section_id = implode(',', $request->section_id);
+            $university->language_id = implode(',', $request->language_id);
+            // $university->state_id = $request->state_id;
+            // $university->city_id = $request->city_id;
+            $university->app_deadline = $request->app_deadline;
+            $university->next_start_date = $request->next_start_date;
+            $university->yearly_tuition = $request->yearly_tuition;
+            $university->duration = $request->duration;
+            $university->star = $request->star;
             $university->address = $request->address;
             $university->admissions_process = $request->admissions_process;
             $university->accommodation = $request->accommodation;

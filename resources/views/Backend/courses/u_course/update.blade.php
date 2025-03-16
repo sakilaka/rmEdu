@@ -48,7 +48,7 @@
                                                                 $is_selected = '';
                                                                 if ($department->id == $course->department_id) {
                                                                     $is_selected = 'selected';
-                                                                   
+
                                                                 }
                                                             @endphp
                                                             <option value="{{ $department->id }}" {{ $is_selected }}>
@@ -72,12 +72,12 @@
                                                                     {{ $degree->name }}
                                                                 </option>
                                                             @endforeach
-                                                     
+
                                                     </select>
                                                 </div>
                                             </div>
 
-                                            
+
 
                                             {{-- <div class="col-md-4">
                                                 <div class="form-group">
@@ -101,7 +101,7 @@
                                                     <select id="university-select" class="form-control form-control-lg select2" name="university_id[]" multiple="multiple" required>
                                                         <option value="all">Select All</option>
                                                         @foreach ($universities as $university)
-                                                            <option value="{{ $university->id }}" 
+                                                            <option value="{{ $university->id }}"
                                                                 @if(in_array($university->id, explode(',', $course->university_id))) selected @endif>
                                                                 {{ $university->name }}
                                                             </option>
@@ -109,8 +109,8 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            
-                                            
+
+
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
@@ -372,17 +372,17 @@
     <script>
         $(document).ready(function () {
             var selectElement = $('#university-select');
-    
+
             // Initialize Select2
             selectElement.select2({
                 placeholder: "Select Universities",
                 allowClear: true
             });
-    
+
             // Handle "Select All" functionality
             selectElement.on('change', function () {
                 var selectedValues = $(this).val(); // Get selected values
-    
+
                 if (selectedValues && selectedValues.includes("all")) {
                     // Select all universities
                     $(this).find("option").prop("selected", true);
@@ -390,11 +390,12 @@
                     // If "Select All" is deselected, remove all selections
                     $(this).find("option[value='all']").prop("selected", false);
                 }
-    
+
                 $(this).trigger("change.select2"); // Update Select2 UI
             });
         });
     </script>
+    
     <script>
         $('.multipleSelect2Search').select2();
 

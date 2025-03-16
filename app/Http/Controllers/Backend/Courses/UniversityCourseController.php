@@ -40,13 +40,13 @@ class UniversityCourseController extends Controller
     public function index()
     {
         $data['courses'] = Course::where('type', 'university')
-                                 ->with('university') 
+                                 ->with('university')
                                  ->orderBy('id', 'desc')
                                  ->get();
                                 //  dd($data);
         return view("Backend.courses.u_course.index", $data);
     }
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -101,6 +101,7 @@ class UniversityCourseController extends Controller
             $course->type = 'university';
             $course->department_id = $request->department_id ?? "";
             $course->degree_id = $request->degree_id;
+            // dd($request->university_id);
             $course->university_id = is_array($request->university_id) ? implode(',', $request->university_id) : $request->university_id;
 
             $course->language_id = $request->language_id ?? 0;
@@ -245,6 +246,7 @@ class UniversityCourseController extends Controller
             DB::commit();
             return redirect(route('admin.u_course.index'))->with('success', 'University Program Created Successfully');
         } catch (\Exception $e) {
+            return $e->getMessage();
             DB::rollBack();
             return redirect()->back()->with('error', $e->getMessage());
         }

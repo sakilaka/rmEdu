@@ -48,7 +48,7 @@
                                                                 $is_selected = '';
                                                                 if ($department->id == $course->department_id) {
                                                                     $is_selected = 'selected';
-                                                                   
+
                                                                 }
                                                             ?>
                                                             <option value="<?php echo e($department->id); ?>" <?php echo e($is_selected); ?>>
@@ -74,12 +74,12 @@
 
                                                                 </option>
                                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                     
+
                                                     </select>
                                                 </div>
                                             </div>
 
-                                            
+
 
                                             
 
@@ -89,7 +89,7 @@
                                                     <select id="university-select" class="form-control form-control-lg select2" name="university_id[]" multiple="multiple" required>
                                                         <option value="all">Select All</option>
                                                         <?php $__currentLoopData = $universities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $university): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                            <option value="<?php echo e($university->id); ?>" 
+                                                            <option value="<?php echo e($university->id); ?>"
                                                                 <?php if(in_array($university->id, explode(',', $course->university_id))): ?> selected <?php endif; ?>>
                                                                 <?php echo e($university->name); ?>
 
@@ -98,8 +98,8 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            
-                                            
+
+
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
@@ -112,8 +112,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Section <span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>Section</label>
                                                     <select class="form-control form-control-lg" name="section_id"
                                                         required>
                                                         <option value="">Select Section</option>
@@ -128,8 +127,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Consultancy Fee <span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>Consultancy Fee </label>
                                                     <input type="number" min="0" name="consultancy_fee"
                                                         placeholder="Enter Consultancy Fee"
                                                         value="<?php echo e($course->consultancy_fee); ?>" class="form-control"
@@ -138,8 +136,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Yearly Fee <span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>Yearly Fee </label>
                                                     <input type="number" min="0" name="year_fee"
                                                         placeholder="Enter Yearly Course Fee"
                                                         value="<?php echo e($course->year_fee); ?>" class="form-control" required>
@@ -147,8 +144,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Program Type <span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>Program Type</label>
                                                     <select class="form-control form-control-lg" name="course_type"
                                                         required>
                                                         <option <?php if($course->coursetype == '1'): ?> Selected <?php endif; ?>
@@ -166,8 +162,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Course Duration <span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>Course Duration </label>
                                                     <input type="number" min="0" name="course_duration"
                                                         placeholder="Enter Course Duration"
                                                         value="<?php echo e($course->course_duration); ?>" class="form-control"
@@ -176,8 +171,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Application Start Date <span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>Application Start Date </label>
                                                     <input type="date" name="next_start_date"
                                                         value="<?php echo e($course->next_start_date); ?>" class="form-control"
                                                         required>
@@ -185,8 +179,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Application Deadline <span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>Application Deadline</label>
                                                     <input type="date" name="application_deadline"
                                                         value="<?php echo e($course->application_deadline); ?>"
                                                         class="form-control" required>
@@ -327,17 +320,17 @@
     <script>
         $(document).ready(function () {
             var selectElement = $('#university-select');
-    
+
             // Initialize Select2
             selectElement.select2({
                 placeholder: "Select Universities",
                 allowClear: true
             });
-    
+
             // Handle "Select All" functionality
             selectElement.on('change', function () {
                 var selectedValues = $(this).val(); // Get selected values
-    
+
                 if (selectedValues && selectedValues.includes("all")) {
                     // Select all universities
                     $(this).find("option").prop("selected", true);
@@ -345,11 +338,12 @@
                     // If "Select All" is deselected, remove all selections
                     $(this).find("option[value='all']").prop("selected", false);
                 }
-    
+
                 $(this).trigger("change.select2"); // Update Select2 UI
             });
         });
     </script>
+    
     <script>
         $('.multipleSelect2Search').select2();
 

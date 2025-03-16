@@ -280,12 +280,27 @@
                                                     <label>Duration<span
                                                             class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <input type="text" name="duration" class="form-control"
+                                                    <input type="number" name="duration" step="0.1" class="form-control"
                                                         placeholder="Enter Address" required>
                                                 </div>
                                             </div>
 
-                                           
+                                            <div class="col-md-4 col-12">
+                                                <div class="form-group">
+                                                    <label>Star<span
+                                                            class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                        <select class="form-control" name="star" id="">
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                        </select>
+                                                </div>
+                                            </div>
+
+
                                             
 
                                             <div class="col-md-12">

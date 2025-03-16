@@ -20,6 +20,7 @@
             padding: 20px;
             border-radius: 10px !important;
             transition: 0.4s;
+            height: 212px;
         }
 
         .section-2-card .card-body img {

@@ -220,6 +220,7 @@
                 }
             }
         </style>
+
         <form class="hero_search_form" action="<?php echo e(route('frontend.university_course_list')); ?>" method="GET"
             onsubmit="removeEmptyFields(this)">
             <div class="row justify-content-center col-12 col-lg-7 py-4 bg-light m-auto filtering_box">
@@ -234,7 +235,7 @@
                         
                     </div>
                 </div>
-                
+              
                 <div class="col-12 col-lg-4 mt-3 mt-lg-0 col-padding-right">
                     <div class="">
                         <select class="form-control select2_form_select"  name="degree">
@@ -258,7 +259,7 @@
                 </div>
             </div>
         </form>
-        
+
         <script>
             function removeEmptyFields(form) {
                 for (var i = form.elements.length - 1; i >= 0; i--) {

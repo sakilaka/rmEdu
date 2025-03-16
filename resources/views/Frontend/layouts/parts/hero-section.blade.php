@@ -215,6 +215,7 @@
                 }
             }
         </style>
+
         <form class="hero_search_form" action="{{ route('frontend.university_course_list') }}" method="GET"
             onsubmit="removeEmptyFields(this)">
             <div class="row justify-content-center col-12 col-lg-7 py-4 bg-light m-auto filtering_box">
@@ -229,17 +230,7 @@
                         {{-- <label for="floatingSelect">Country</label> --}}
                     </div>
                 </div>
-                {{-- <div class="col-12 col-lg-3 mt-3 mt-lg-0 col-padding-right">
-                    <div class="form-floating">
-                        <select class="form-select" aria-label="Floating label select example" name="university">
-                            <option value="">Select University</option>
-                            @foreach ($universities as $university)
-                                <option value="{{ $university->id }}">{{ $university->name }}</option>
-                            @endforeach
-                        </select>
-                        <label for="floatingSelect">University</label>
-                    </div>
-                </div> --}}
+              
                 <div class="col-12 col-lg-4 mt-3 mt-lg-0 col-padding-right">
                     <div class="{{-- form-floating --}}">
                         <select class="form-control select2_form_select" {{-- aria-label="Floating label select example" --}} name="degree">
@@ -263,7 +254,7 @@
                 </div>
             </div>
         </form>
-        
+
         <script>
             function removeEmptyFields(form) {
                 for (var i = form.elements.length - 1; i >= 0; i--) {

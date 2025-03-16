@@ -178,6 +178,157 @@
                                                     </select>
                                                 </div>
                                             </div>
+
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Degree
+                                                        <span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span>
+                                                    </label>
+                                                    <select id="degree"
+                                                        class="form-control form-control-lg select2"
+                                                        name="degree_id[]" required multiple>
+                                                        <option value="">Select Degree</option>
+                                                        @php
+                                                            $selectedDegrees = explode(
+                                                                ',',
+                                                                $university->degree_id ?? '',
+                                                            );
+                                                        @endphp
+                                                        @foreach ($degrees as $degree)
+                                                            <option value="{{ $degree->id }}"
+                                                                {{ in_array($degree->id, $selectedDegrees) ? 'selected' : '' }}>
+                                                                {{ $degree->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Department
+                                                        <span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span>
+                                                    </label>
+                                                    <select id="department"
+                                                        class="form-control form-control-lg select2"
+                                                        name="department_id[]" required multiple>
+                                                        <option value="">Select Department</option>
+                                                        @php
+                                                            $selectedDepartments = explode(
+                                                                ',',
+                                                                $university->department_id ?? '',
+                                                            );
+                                                        @endphp
+                                                        @foreach ($departments as $department)
+                                                            <option value="{{ $department->id }}"
+                                                                {{ in_array($department->id, $selectedDepartments) ? 'selected' : '' }}>
+                                                                {{ $department->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Languages
+                                                        <span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span>
+                                                    </label>
+                                                    <select id="language"
+                                                        class="form-control form-control-lg select2"
+                                                        name="language_id[]" required multiple>
+                                                        <option value="">Select Languages</option>
+                                                        @php
+                                                            $selectedLanguages = explode(
+                                                                ',',
+                                                                $university->language_id ?? '',
+                                                            );
+                                                        @endphp
+                                                        @foreach ($languages as $language)
+                                                            <option value="{{ $language->id }}"
+                                                                {{ in_array($language->id, $selectedLanguages) ? 'selected' : '' }}>
+                                                                {{ $language->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Section
+                                                        <span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span>
+                                                    </label>
+                                                    <select id="section"
+                                                        class="form-control form-control-lg select2"
+                                                        name="section_id[]" required multiple>
+                                                        <option value="">Select Section</option>
+                                                        @php
+                                                            $selectedSections = explode(
+                                                                ',',
+                                                                $university->section_id ?? '',
+                                                            );
+                                                        @endphp
+                                                        @foreach ($sections as $section)
+                                                            <option value="{{ $section->id }}"
+                                                                {{ in_array($section->id, $selectedSections) ? 'selected' : '' }}>
+                                                                {{ $section->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4 col-12">
+                                                <div class="form-group">
+                                                    <label>Application Deadline</label>
+                                                    <input type="date" name="app_deadline" value="{{ $university->app_deadline }}" class="form-control"
+                                                        placeholder="Enter Address" >
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4 col-12">
+                                                <div class="form-group">
+                                                    <label>Next start date</label>
+                                                    <input type="date" name="next_start_date" value="{{ $university->next_start_date }}" class="form-control"
+                                                        placeholder="Enter Address">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4 col-12">
+                                                <div class="form-group">
+                                                    <label>Yearly tuition</label>
+                                                    <input type="text" name="yearly_tuition" value="{{ $university->yearly_tuition }}" class="form-control"
+                                                        placeholder="Enter Address">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4 col-12">
+                                                <div class="form-group">
+                                                    <label>Duration</label>
+                                                    <input type="number" step="0.1" name="duration" value="{{ $university->duration }}" class="form-control"
+                                                        placeholder="Enter Duration">
+                                                </div>
+                                            </div>
+
+                                              <div class="col-md-4 col-12">
+                                                <div class="form-group">
+                                                    <label>Star</label>
+                                                        <select class="form-control" name="star" id="">
+                                                            <option @if($university->star === 1) selected @endif value="1">1</option>
+                                                            <option @if($university->star === 2) selected @endif value="2">2</option>
+                                                            <option @if($university->star === 3) selected @endif value="3">3</option>
+                                                            <option @if($university->star === 4) selected @endif value="4">4</option>
+                                                            <option @if($university->star === 5) selected @endif value="5">5</option>
+                                                        </select>
+                                                </div>
+                                            </div>
+
                                             {{-- <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>State <span class="text-danger"
@@ -210,7 +361,8 @@
                                             </div> --}}
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label>Address (Street/Apartment, City, State)<span class="text-danger"
+                                                    <label>Address (Street/Apartment, City, State)<span
+                                                            class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="text" name="address" class="form-control"
                                                         placeholder="Enter Address"
@@ -375,6 +527,20 @@
     @include('Backend.components.ckeditor5-config')
 
     <script src="{{ asset('backend/assets/js/select2.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#degree').select2();
+        });
+        $(document).ready(function() {
+            $('#department').select2();
+        });
+        $(document).ready(function() {
+            $('#language').select2();
+        });
+        $(document).ready(function() {
+            $('#section ').select2();
+        });
+    </script>
     {{-- <script src="{{ asset('backend/lib/summernote/summernote-bs4.min.js') }}"></script>
     <script>
         $('.summernote').summernote({
