@@ -183,58 +183,50 @@
 
 
                                             <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Degree
-                                                        <span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span>
-                                                    </label>
-                                                    <select id="degree"
-                                                        class="form-control form-control-lg select2"
-                                                        name="degree_id[]" required multiple>
-                                                        <option value="">Select Degree</option>
-                                                        <?php
-                                                            $selectedDegrees = explode(
-                                                                ',',
-                                                                $university->degree_id ?? '',
-                                                            );
-                                                        ?>
-                                                        <?php $__currentLoopData = $degrees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $degree): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                            <option value="<?php echo e($degree->id); ?>"
-                                                                <?php echo e(in_array($degree->id, $selectedDegrees) ? 'selected' : ''); ?>>
-                                                                <?php echo e($degree->name); ?>
+    <div class="form-group">
+        <label>Degree
+            <span class="text-danger" style="font-size: 1.25rem; line-height:0;">*</span>
+        </label>
+        <select id="degree" class="form-control form-control-lg select2" name="degree_id[]" required multiple>
+            <option value="">Select Degree</option>
+            <?php
+                $selectedDegrees = explode(',', $university->degree_id ?? '');
+                $selectedDepartments = json_decode($university->department_id, true) ?? [];
+            ?>
+            <?php $__currentLoopData = $degrees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $degree): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <option value="<?php echo e($degree->id); ?>" <?php echo e(in_array($degree->id, $selectedDegrees) ? 'selected' : ''); ?>>
+                    <?php echo e($degree->name); ?>
 
-                                                            </option>
-                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                    </select>
-                                                </div>
-                                            </div>
+                </option>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </select>
+    </div>
+</div>
 
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Department
-                                                        <span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span>
-                                                    </label>
-                                                    <select id="department"
-                                                        class="form-control form-control-lg select2"
-                                                        name="department_id[]" required multiple>
-                                                        <option value="">Select Department</option>
-                                                        <?php
-                                                            $selectedDepartments = explode(
-                                                                ',',
-                                                                $university->department_id ?? '',
-                                                            );
-                                                        ?>
-                                                        <?php $__currentLoopData = $departments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $department): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                            <option value="<?php echo e($department->id); ?>"
-                                                                <?php echo e(in_array($department->id, $selectedDepartments) ? 'selected' : ''); ?>>
-                                                                <?php echo e($department->name); ?>
+<!-- Department fields container -->
+<div id="departments-container" class="col-md-8">
+    <?php $__currentLoopData = $selectedDegrees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $degreeId): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <?php
+            $degreeName = $degrees->where('id', $degreeId)->first()->name ?? 'Unknown Degree';
+            $previousDepartments = $selectedDepartments[$degreeId] ?? [];
+        ?>
+        <div class="form-group">
+            <label>Department for <?php echo e($degreeName); ?>
 
-                                                            </option>
-                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                    </select>
-                                                </div>
-                                            </div>
+                <span class="text-danger" style="font-size: 1.25rem; line-height:0;">*</span>
+            </label>
+            <select class="form-control form-control-lg department-select2" name="departments[<?php echo e($degreeId); ?>][]" multiple required>
+                <option value="">Select Department</option>
+                <?php $__currentLoopData = $departments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $department): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($department->id); ?>" <?php echo e(in_array($department->id, $previousDepartments) ? 'selected' : ''); ?>>
+                        <?php echo e($department->name); ?>
+
+                    </option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </select>
+        </div>
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+</div>
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
@@ -292,45 +284,39 @@
 
                                             <div class="col-md-4 col-12">
                                                 <div class="form-group">
-                                                    <label>Application Deadline<span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>Application Deadline</label>
                                                     <input type="date" name="app_deadline" value="<?php echo e($university->app_deadline); ?>" class="form-control"
-                                                        placeholder="Enter Address" required>
+                                                        placeholder="Enter Address" >
                                                 </div>
                                             </div>
 
                                             <div class="col-md-4 col-12">
                                                 <div class="form-group">
-                                                    <label>Next start date<span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>Next start date</label>
                                                     <input type="date" name="next_start_date" value="<?php echo e($university->next_start_date); ?>" class="form-control"
-                                                        placeholder="Enter Address" required>
+                                                        placeholder="Enter Address">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-4 col-12">
                                                 <div class="form-group">
-                                                    <label>Yearly tuition<span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>Yearly tuition</label>
                                                     <input type="text" name="yearly_tuition" value="<?php echo e($university->yearly_tuition); ?>" class="form-control"
-                                                        placeholder="Enter Address" required>
+                                                        placeholder="Enter Address">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-4 col-12">
                                                 <div class="form-group">
-                                                    <label>Duration<span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>Duration</label>
                                                     <input type="number" step="0.1" name="duration" value="<?php echo e($university->duration); ?>" class="form-control"
-                                                        placeholder="Enter Duration" required>
+                                                        placeholder="Enter Duration">
                                                 </div>
                                             </div>
 
                                               <div class="col-md-4 col-12">
                                                 <div class="form-group">
-                                                    <label>Star<span
-                                                            class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>Star</label>
                                                         <select class="form-control" name="star" id="">
                                                             <option <?php if($university->star === 1): ?> selected <?php endif; ?> value="1">1</option>
                                                             <option <?php if($university->star === 2): ?> selected <?php endif; ?> value="2">2</option>
@@ -646,6 +632,53 @@
             $(this).parent().remove();
         });
     </script>
+
+
+<script>
+    $(document).ready(function () {
+
+        let departments = <?php echo json_encode($departments, 15, 512) ?>;
+        let previousDepartments = <?php echo json_encode($selectedDepartments, 15, 512) ?>; // Load previous selections from backend
+
+        function generateDepartmentFields(selectedDegrees) {
+            let container = $('#departments-container');
+            container.html(''); // Clear existing department fields
+
+            selectedDegrees.forEach(degreeId => {
+                let degreeName = $("#degree option[value='" + degreeId + "']").text();
+                let selectedDepts = previousDepartments[degreeId] || []; // Preserve selections
+
+                let departmentSelect = `
+                    <div class="form-group">
+                        <label>Department for ${degreeName}
+                            <span class="text-danger" style="font-size: 1.25rem; line-height:0;">*</span>
+                        </label>
+                        <select class="form-control form-control-lg department-select2" name="departments[${degreeId}][]" multiple required>
+                            <option value="">Select Department</option>
+                            ${departments.map(dept => `<option value="${dept.id}" ${selectedDepts.includes(dept.id.toString()) ? 'selected' : ''}>${dept.name}</option>`).join('')}
+                        </select>
+                    </div>
+                `;
+
+                container.append(departmentSelect);
+            });
+
+            $('.department-select2').select2(); // Reinitialize Select2 for new elements
+        }
+
+        // On page load, generate department fields based on selected degrees
+        let initialDegrees = $('#degree').val() || [];
+        generateDepartmentFields(initialDegrees);
+
+        // When degree selection changes, regenerate department fields while preserving selections
+        $('#degree').change(function () {
+            let selectedDegrees = $(this).val() || [];
+            generateDepartmentFields(selectedDegrees);
+        });
+
+    });
+</script>
+
 </body>
 
 </html>

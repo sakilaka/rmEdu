@@ -173,14 +173,14 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Degree
                                                         <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span>
                                                     </label>
                                                     <select id="degree" class="form-control form-control-lg"
-                                                        name="degree_id[]"  required multiple>
+                                                        name="degree_id[]" required multiple>
                                                         <option value="">Select Degree</option>
                                                         <?php $__currentLoopData = $degrees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $degree): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                             <option value="<?php echo e($degree->id); ?>"><?php echo e($degree->name); ?>
@@ -191,23 +191,12 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Department
-                                                        <span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span>
-                                                    </label>
-                                                    <select id="department" class="form-control form-control-lg"
-                                                        name="department_id[]" required multiple>
-                                                        <option value="">Select department</option>
-                                                        <?php $__currentLoopData = $departments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $department): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                            <option value="<?php echo e($department->id); ?>"><?php echo e($department->name); ?>
-
-                                                            </option>
-                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                    </select>
-                                                </div>
+                                            <!-- Container for dynamic department fields -->
+                                            <div id="departments-container" class="col-md-6">
+                                                <!-- Department fields will be dynamically added here -->
                                             </div>
+
+                                            
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
@@ -247,8 +236,7 @@
 
                                             <div class="col-md-4 col-12">
                                                 <div class="form-group">
-                                                    <label>Application Deadline<span
-                                                            class="text-danger"
+                                                    <label>Application Deadline<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="date" name="app_deadline" class="form-control"
                                                         placeholder="Enter Address" required>
@@ -257,51 +245,42 @@
 
                                             <div class="col-md-4 col-12">
                                                 <div class="form-group">
-                                                    <label>Next start date<span
-                                                            class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>Next start date</label>
                                                     <input type="date" name="next_start_date" class="form-control"
-                                                        placeholder="Enter Address" required>
+                                                        placeholder="Enter">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-4 col-12">
                                                 <div class="form-group">
-                                                    <label>Yearly tuition<span
-                                                            class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>Yearly tuition</label>
                                                     <input type="text" name="yearly_tuition" class="form-control"
-                                                        placeholder="Enter Address" required>
+                                                        placeholder="Enter">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-4 col-12">
                                                 <div class="form-group">
-                                                    <label>Duration<span
-                                                            class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <input type="number" name="duration" step="0.1" class="form-control"
-                                                        placeholder="Enter Address" required>
+                                                    <label>Duration</label>
+                                                    <input type="number" name="duration" step="0.1"
+                                                        class="form-control" placeholder="Enter Duration">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-4 col-12">
                                                 <div class="form-group">
-                                                    <label>Star<span
-                                                            class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                        <select class="form-control" name="star" id="">
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4">4</option>
-                                                            <option value="5">5</option>
-                                                        </select>
+                                                    <label>Star</label>
+                                                    <select class="form-control" name="star" id="">
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                    </select>
                                                 </div>
                                             </div>
 
 
-                                            
 
                                             <div class="col-md-12">
                                                 <div class="form-group">
@@ -324,7 +303,6 @@
                                                 </div>
                                             </div>
 
-                                            
 
                                             <div class="col-md-3">
                                                 <div class="form-group">
@@ -392,19 +370,16 @@
                                                     <textarea class="form-control editor" name="admissions_process" style="height: 150px"></textarea>
                                                 </div>
                                             </div>
+
+
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label>Scholarships</label>
-                                                    <textarea class="form-control editor" name="scholarships" style="height: 150px"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Fees Structure</label>
+                                                    <label>Fees & Scholarships</label>
                                                     <textarea class="form-control editor" name="fees_structure" style="height: 150px"></textarea>
                                                 </div>
                                             </div>
-                                            
+
+
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>English Requirements</label>
@@ -439,19 +414,18 @@
 
     <script src="<?php echo e(asset('backend/assets/js/select2.js')); ?>"></script>
     <script>
-         $(document).ready(function(){
+        $(document).ready(function() {
             $('#degree').select2();
-         });
-         $(document).ready(function(){
+        });
+        $(document).ready(function() {
             $('#department').select2();
-         });
-         $(document).ready(function(){
+        });
+        $(document).ready(function() {
             $('#language').select2();
-         });
-         $(document).ready(function(){
+        });
+        $(document).ready(function() {
             $('#section ').select2();
-         });
-
+        });
     </script>
 
     
@@ -591,6 +565,57 @@
             $(this).parent().remove();
         });
     </script>
+
+
+<script>
+    $(document).ready(function () {
+        let departments = <?php echo json_encode($departments, 15, 512) ?>;
+
+        function generateDepartmentFields(selectedDegrees) {
+            let container = $('#departments-container');
+
+            // Preserve previously selected department values
+            let previousSelections = {};
+            $('.department-select2').each(function () {
+                let degreeId = $(this).data('degree-id');
+                previousSelections[degreeId] = $(this).val(); // Store previous selections
+            });
+
+            container.html(''); // Clear department container
+
+            selectedDegrees.forEach(degreeId => {
+                let degreeName = $("#degree option[value='" + degreeId + "']").text();
+                let selectedDepts = previousSelections[degreeId] || []; // Restore previous selections
+
+                let departmentSelect = `
+                    <div class="form-group">
+                        <label>Department for ${degreeName}
+                            <span class="text-danger" style="font-size: 1.25rem; line-height:0;">*</span>
+                        </label>
+                        <select class="form-control form-control-lg department-select2" name="departments[${degreeId}][]" multiple required data-degree-id="${degreeId}">
+                            <option value="">Select Department</option>
+                            ${departments.map(dept => `<option value="${dept.id}" ${selectedDepts.includes(dept.id.toString()) ? 'selected' : ''}>${dept.name}</option>`).join('')}
+                        </select>
+                    </div>
+                `;
+
+                container.append(departmentSelect);
+            });
+
+            $('.department-select2').select2(); // Reinitialize Select2 for new elements
+        }
+
+        // On change of degree selection, update department fields
+        $('#degree').change(function () {
+            let selectedDegrees = $(this).val() || [];
+            generateDepartmentFields(selectedDegrees);
+        });
+
+    });
+</script>
+
+
+
 </body>
 
 </html>

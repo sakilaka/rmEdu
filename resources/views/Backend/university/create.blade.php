@@ -172,14 +172,14 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Degree
                                                         <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span>
                                                     </label>
                                                     <select id="degree" class="form-control form-control-lg"
-                                                        name="degree_id[]"  required multiple>
+                                                        name="degree_id[]" required multiple>
                                                         <option value="">Select Degree</option>
                                                         @foreach ($degrees as $degree)
                                                             <option value="{{ $degree->id }}">{{ $degree->name }}
@@ -189,7 +189,12 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-4">
+                                            <!-- Container for dynamic department fields -->
+                                            <div id="departments-container" class="col-md-6">
+                                                <!-- Department fields will be dynamically added here -->
+                                            </div>
+
+                                            {{-- <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Department
                                                         <span class="text-danger"
@@ -204,7 +209,7 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                            </div>
+                                            </div> --}}
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
@@ -242,8 +247,7 @@
 
                                             <div class="col-md-4 col-12">
                                                 <div class="form-group">
-                                                    <label>Application Deadline<span
-                                                            class="text-danger"
+                                                    <label>Application Deadline<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="date" name="app_deadline" class="form-control"
                                                         placeholder="Enter Address" required>
@@ -269,45 +273,25 @@
                                             <div class="col-md-4 col-12">
                                                 <div class="form-group">
                                                     <label>Duration</label>
-                                                    <input type="number" name="duration" step="0.1" class="form-control"
-                                                        placeholder="Enter Duration">
+                                                    <input type="number" name="duration" step="0.1"
+                                                        class="form-control" placeholder="Enter Duration">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-4 col-12">
                                                 <div class="form-group">
                                                     <label>Star</label>
-                                                        <select class="form-control" name="star" id="">
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4">4</option>
-                                                            <option value="5">5</option>
-                                                        </select>
+                                                    <select class="form-control" name="star" id="">
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                    </select>
                                                 </div>
                                             </div>
 
 
-                                            {{-- <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>State <span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <select class="form-control form-control-lg" name="state_id"
-                                                        id="state" required>
-                                                        <option value="">Select Country First</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>City <span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <select class="form-control form-control-lg" name="city_id"
-                                                        id="city" required>
-                                                        <option value="">Select State First</option>
-                                                    </select>
-                                                </div>
-                                            </div> --}}
 
                                             <div class="col-md-12">
                                                 <div class="form-group">
@@ -330,17 +314,6 @@
                                                 </div>
                                             </div>
 
-                                            {{-- <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label class="form-control-label">Top (%):</label>
-                                                    <div class="mg-t-10 mg-sm-t-0">
-                                                        <input type="number" name="top_rank_percentage"
-                                                            class="form-control"
-                                                            placeholder="Enter Top Rank Value in Percentage"
-                                                            value="{{ old('top_rank_percentage') }}">
-                                                    </div>
-                                                </div>
-                                            </div> --}}
 
                                             <div class="col-md-3">
                                                 <div class="form-group">
@@ -408,13 +381,8 @@
                                                     <textarea class="form-control editor" name="admissions_process" style="height: 150px"></textarea>
                                                 </div>
                                             </div>
-                                            {{-- <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Scholarships</label>
-                                                    <textarea class="form-control editor" name="scholarships" style="height: 150px"></textarea>
-                                                </div>
-                                            </div> --}}
-                                            
+
+
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Fees & Scholarships</label>
@@ -422,12 +390,6 @@
                                                 </div>
                                             </div>
 
-                                            {{-- <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Academic Requirements</label>
-                                                    <textarea class="form-control editor" name="academic_requirements" style="height: 150px"></textarea>
-                                                </div>
-                                            </div> --}}
 
                                             <div class="col-md-12">
                                                 <div class="form-group">
@@ -463,19 +425,18 @@
 
     <script src="{{ asset('backend/assets/js/select2.js') }}"></script>
     <script>
-         $(document).ready(function(){
+        $(document).ready(function() {
             $('#degree').select2();
-         });
-         $(document).ready(function(){
+        });
+        $(document).ready(function() {
             $('#department').select2();
-         });
-         $(document).ready(function(){
+        });
+        $(document).ready(function() {
             $('#language').select2();
-         });
-         $(document).ready(function(){
+        });
+        $(document).ready(function() {
             $('#section ').select2();
-         });
-
+        });
     </script>
 
     {{-- <script src="{{ asset('backend/lib/summernote/summernote-bs4.min.js') }}"></script>
@@ -622,6 +583,57 @@
             $(this).parent().remove();
         });
     </script>
+
+
+<script>
+    $(document).ready(function () {
+        let departments = @json($departments);
+
+        function generateDepartmentFields(selectedDegrees) {
+            let container = $('#departments-container');
+
+            // Preserve previously selected department values
+            let previousSelections = {};
+            $('.department-select2').each(function () {
+                let degreeId = $(this).data('degree-id');
+                previousSelections[degreeId] = $(this).val(); // Store previous selections
+            });
+
+            container.html(''); // Clear department container
+
+            selectedDegrees.forEach(degreeId => {
+                let degreeName = $("#degree option[value='" + degreeId + "']").text();
+                let selectedDepts = previousSelections[degreeId] || []; // Restore previous selections
+
+                let departmentSelect = `
+                    <div class="form-group">
+                        <label>Department for ${degreeName}
+                            <span class="text-danger" style="font-size: 1.25rem; line-height:0;">*</span>
+                        </label>
+                        <select class="form-control form-control-lg department-select2" name="departments[${degreeId}][]" multiple required data-degree-id="${degreeId}">
+                            <option value="">Select Department</option>
+                            ${departments.map(dept => `<option value="${dept.id}" ${selectedDepts.includes(dept.id.toString()) ? 'selected' : ''}>${dept.name}</option>`).join('')}
+                        </select>
+                    </div>
+                `;
+
+                container.append(departmentSelect);
+            });
+
+            $('.department-select2').select2(); // Reinitialize Select2 for new elements
+        }
+
+        // On change of degree selection, update department fields
+        $('#degree').change(function () {
+            let selectedDegrees = $(this).val() || [];
+            generateDepartmentFields(selectedDegrees);
+        });
+
+    });
+</script>
+
+
+
 </body>
 
 </html>

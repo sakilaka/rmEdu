@@ -56,7 +56,8 @@ class UniversityController extends Controller
             $university->continent_id = $request->continent_id;
             $university->country_id = $request->country_id;
             $university->degree_id = implode(',', $request->degree_id);
-            $university->department_id = implode(',', $request->department_id);
+            // $university->department_id = implode(',', $request->department_id);
+            $university->department_id = json_encode($request->departments);
             $university->section_id = implode(',', $request->section_id);
             $university->language_id = implode(',', $request->language_id);
             // $university->state_id = $request->state_id;
@@ -158,7 +159,8 @@ class UniversityController extends Controller
             // $university->state_id = $request->state_id;
             // $university->city_id = $request->city_id;
             $university->degree_id = implode(',', $request->degree_id);
-            $university->department_id = implode(',', $request->department_id);
+            // $university->department_id = implode(',', $request->department_id);
+            $university->department_id = json_encode($request->departments);
             $university->section_id = implode(',', $request->section_id);
             $university->language_id = implode(',', $request->language_id);
             // $university->state_id = $request->state_id;

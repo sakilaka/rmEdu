@@ -98,8 +98,8 @@
     </div>
 
     <nav class="frontend-page navbar navbar-expand-lg bg-body-tertiary {{-- fixed-top --}} navbar-custom sticky sticky-light"
-        id="navbar" style="padding: 0 20px !important; height: 90px;">
-        <div class="container">
+        id="navbar">
+        <div class="container" style="padding: 30px;">
             <a class="navbar-brand logo" href="{{ route('home') }}">
                 <img src="{{ @$header_logo->header_image == '' ? @$header_logo->no_image : @$header_logo->header_image_show }}"
                     style="width: 100px" alt="Logo-{{ @$name->company_name }}">
@@ -109,6 +109,7 @@
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
@@ -148,6 +149,7 @@
                     </li>
 
                 </ul>
+
                 <div class="nav-btn d-flex justify-content-between align-items-center">
                     <div>
                         <a class="btn btn-header-search" id="search_btn">
@@ -313,4 +315,5 @@
             </div>
         </div>
     </nav>
+    
 </header>

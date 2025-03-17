@@ -181,56 +181,47 @@
 
 
                                             <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Degree
-                                                        <span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span>
-                                                    </label>
-                                                    <select id="degree"
-                                                        class="form-control form-control-lg select2"
-                                                        name="degree_id[]" required multiple>
-                                                        <option value="">Select Degree</option>
-                                                        @php
-                                                            $selectedDegrees = explode(
-                                                                ',',
-                                                                $university->degree_id ?? '',
-                                                            );
-                                                        @endphp
-                                                        @foreach ($degrees as $degree)
-                                                            <option value="{{ $degree->id }}"
-                                                                {{ in_array($degree->id, $selectedDegrees) ? 'selected' : '' }}>
-                                                                {{ $degree->name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
+    <div class="form-group">
+        <label>Degree
+            <span class="text-danger" style="font-size: 1.25rem; line-height:0;">*</span>
+        </label>
+        <select id="degree" class="form-control form-control-lg select2" name="degree_id[]" required multiple>
+            <option value="">Select Degree</option>
+            @php
+                $selectedDegrees = explode(',', $university->degree_id ?? '');
+                $selectedDepartments = json_decode($university->department_id, true) ?? [];
+            @endphp
+            @foreach ($degrees as $degree)
+                <option value="{{ $degree->id }}" {{ in_array($degree->id, $selectedDegrees) ? 'selected' : '' }}>
+                    {{ $degree->name }}
+                </option>
+            @endforeach
+        </select>
+    </div>
+</div>
 
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Department
-                                                        <span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span>
-                                                    </label>
-                                                    <select id="department"
-                                                        class="form-control form-control-lg select2"
-                                                        name="department_id[]" required multiple>
-                                                        <option value="">Select Department</option>
-                                                        @php
-                                                            $selectedDepartments = explode(
-                                                                ',',
-                                                                $university->department_id ?? '',
-                                                            );
-                                                        @endphp
-                                                        @foreach ($departments as $department)
-                                                            <option value="{{ $department->id }}"
-                                                                {{ in_array($department->id, $selectedDepartments) ? 'selected' : '' }}>
-                                                                {{ $department->name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
+<!-- Department fields container -->
+<div id="departments-container" class="col-md-8">
+    @foreach ($selectedDegrees as $degreeId)
+        @php
+            $degreeName = $degrees->where('id', $degreeId)->first()->name ?? 'Unknown Degree';
+            $previousDepartments = $selectedDepartments[$degreeId] ?? [];
+        @endphp
+        <div class="form-group">
+            <label>Department for {{ $degreeName }}
+                <span class="text-danger" style="font-size: 1.25rem; line-height:0;">*</span>
+            </label>
+            <select class="form-control form-control-lg department-select2" name="departments[{{ $degreeId }}][]" multiple required>
+                <option value="">Select Department</option>
+                @foreach ($departments as $department)
+                    <option value="{{ $department->id }}" {{ in_array($department->id, $previousDepartments) ? 'selected' : '' }}>
+                        {{ $department->name }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+    @endforeach
+</div>
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
@@ -685,6 +676,53 @@
             $(this).parent().remove();
         });
     </script>
+
+
+<script>
+    $(document).ready(function () {
+
+        let departments = @json($departments);
+        let previousDepartments = @json($selectedDepartments); // Load previous selections from backend
+
+        function generateDepartmentFields(selectedDegrees) {
+            let container = $('#departments-container');
+            container.html(''); // Clear existing department fields
+
+            selectedDegrees.forEach(degreeId => {
+                let degreeName = $("#degree option[value='" + degreeId + "']").text();
+                let selectedDepts = previousDepartments[degreeId] || []; // Preserve selections
+
+                let departmentSelect = `
+                    <div class="form-group">
+                        <label>Department for ${degreeName}
+                            <span class="text-danger" style="font-size: 1.25rem; line-height:0;">*</span>
+                        </label>
+                        <select class="form-control form-control-lg department-select2" name="departments[${degreeId}][]" multiple required>
+                            <option value="">Select Department</option>
+                            ${departments.map(dept => `<option value="${dept.id}" ${selectedDepts.includes(dept.id.toString()) ? 'selected' : ''}>${dept.name}</option>`).join('')}
+                        </select>
+                    </div>
+                `;
+
+                container.append(departmentSelect);
+            });
+
+            $('.department-select2').select2(); // Reinitialize Select2 for new elements
+        }
+
+        // On page load, generate department fields based on selected degrees
+        let initialDegrees = $('#degree').val() || [];
+        generateDepartmentFields(initialDegrees);
+
+        // When degree selection changes, regenerate department fields while preserving selections
+        $('#degree').change(function () {
+            let selectedDegrees = $(this).val() || [];
+            generateDepartmentFields(selectedDegrees);
+        });
+
+    });
+</script>
+
 </body>
 
 </html>

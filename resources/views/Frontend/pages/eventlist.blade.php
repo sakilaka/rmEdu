@@ -454,7 +454,8 @@
 
 
         function makeTimer() {
-            var countdowntime = "{{ date('d F Y H:i:s', strtotime($event->eventstarttime)) }}";
+            var countdowntime = "{{ isset($event) && isset($event->eventstarttime) ? date('d F Y H:i:s', strtotime($event->eventstarttime)) : '' }}";
+
 
 
             var endTime = new Date(countdowntime);
@@ -493,7 +494,7 @@
             }
 
         }
-        
+
         setInterval(function() {
             makeTimer();
 

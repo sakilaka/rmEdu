@@ -424,7 +424,8 @@
 
 
         function makeTimer() {
-            var countdowntime = "<?php echo e(date('d F Y H:i:s', strtotime($event->eventstarttime))); ?>";
+            var countdowntime = "<?php echo e(isset($event) && isset($event->eventstarttime) ? date('d F Y H:i:s', strtotime($event->eventstarttime)) : ''); ?>";
+
 
 
             var endTime = new Date(countdowntime);
@@ -463,6 +464,7 @@
             }
 
         }
+
         setInterval(function() {
             makeTimer();
 
