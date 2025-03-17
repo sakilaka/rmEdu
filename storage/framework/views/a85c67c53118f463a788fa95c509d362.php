@@ -741,6 +741,7 @@
             $paddingTop = 'pt-0';
         ?>
     <?php endif; ?>
+    
     <section class="section wrapper-search-page search-results <?php echo e($marginTop . ' ' . $paddingTop); ?>">
         <div class="container mt-5 ajax-course-show">
             <div class="columns">
@@ -750,6 +751,22 @@
                             <h4 class="title is-5" style="color: var(--secondary_background); font-weight:bold">
                                 Filter Universities
                             </h4>
+                        </div>
+                        <div class="my-2">
+                            <div class="toggle-header" data-filterslist="country">
+                                <h5 class="title is-5">Country</h5>
+                                <div class="toggle-icon" style="transform: rotate(-45deg);"></div>
+                            </div>
+                            <div class="toggle-content" data-filters="country">
+                                <select name="country" class="form-control select2_form_select" style="width: 90%;">
+                                    <option value="">Select Country</option>
+                                    <?php $__currentLoopData = $countries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $country): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e(@$country->id); ?>"
+                                            <?php echo e(request()->get('country') == $country->id ? 'selected' : ''); ?>>
+                                            <?php echo e(@$country->name); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </select>
+                            </div>
                         </div>
 
                         <div class="my-2">
@@ -772,6 +789,23 @@
                         </div>
 
                         <div class="my-2">
+                            <div class="toggle-header" data-filterslist="department">
+                                <h5 class="title is-5">Department</h5>
+                                <div class="toggle-icon" style="transform: rotate(-45deg);"></div>
+                            </div>
+                            <div class="toggle-content" data-filters="department">
+                                <select name="department" class="form-control select2_form_select" style="width: 90%;">
+                                    <option value="">Select Department</option>
+                                    <?php $__currentLoopData = $departments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $department): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($department->id); ?>"
+                                            <?php echo e(request()->get('department') == $department->id ? 'selected' : ''); ?>>
+                                            <?php echo e($department->name); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="my-2">
                             <div class="toggle-header" data-filterslist="language">
                                 <h5 class="title is-5">Language</h5>
                                 <div class="toggle-icon" style="transform: rotate(-45deg);"></div>
@@ -788,22 +822,7 @@
                             </div>
                         </div>
 
-                        <div class="my-2">
-                            <div class="toggle-header" data-filterslist="department">
-                                <h5 class="title is-5">Department</h5>
-                                <div class="toggle-icon" style="transform: rotate(-45deg);"></div>
-                            </div>
-                            <div class="toggle-content" data-filters="department">
-                                <select name="department" class="form-control select2_form_select" style="width: 90%;">
-                                    <option value="">Select Department</option>
-                                    <?php $__currentLoopData = $departments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $department): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <option value="<?php echo e($department->id); ?>"
-                                            <?php echo e(request()->get('department') == $department->id ? 'selected' : ''); ?>>
-                                            <?php echo e($department->name); ?></option>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                </select>
-                            </div>
-                        </div>
+
 
                         <div class="my-2">
                             <div class="toggle-header" data-filterslist="session">
@@ -839,22 +858,7 @@
                             </div>
                         </div>
 
-                        <div class="my-2">
-                            <div class="toggle-header" data-filterslist="country">
-                                <h5 class="title is-5">Country</h5>
-                                <div class="toggle-icon" style="transform: rotate(135deg);"></div>
-                            </div>
-                            <div class="toggle-content" data-filters="country" style="display: none">
-                                <select name="country" class="form-control select2_form_select" style="width: 90%;">
-                                    <option value="">Select Country</option>
-                                    <?php $__currentLoopData = $countries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $country): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <option value="<?php echo e(@$country->id); ?>"
-                                            <?php echo e(request()->get('country') == $country->id ? 'selected' : ''); ?>>
-                                            <?php echo e(@$country->name); ?></option>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                </select>
-                            </div>
-                        </div>
+
 
                     </div>
                 </div>

@@ -742,6 +742,7 @@
             $paddingTop = 'pt-0';
         @endphp
     @endif
+    
     <section class="section wrapper-search-page search-results {{ $marginTop . ' ' . $paddingTop }}">
         <div class="container mt-5 ajax-course-show">
             <div class="columns">
@@ -751,6 +752,22 @@
                             <h4 class="title is-5" style="color: var(--secondary_background); font-weight:bold">
                                 Filter Universities
                             </h4>
+                        </div>
+                        <div class="my-2">
+                            <div class="toggle-header" data-filterslist="country">
+                                <h5 class="title is-5">Country</h5>
+                                <div class="toggle-icon" style="transform: rotate(-45deg);"></div>
+                            </div>
+                            <div class="toggle-content" data-filters="country">
+                                <select name="country" class="form-control select2_form_select" style="width: 90%;">
+                                    <option value="">Select Country</option>
+                                    @foreach ($countries as $country)
+                                        <option value="{{ @$country->id }}"
+                                            {{ request()->get('country') == $country->id ? 'selected' : '' }}>
+                                            {{ @$country->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
 
                         <div class="my-2">
@@ -766,6 +783,23 @@
                                             {{ request()->get('degree') == $degree->id ? 'selected' : '' }}>
                                             {{ $degree->name }}
                                         </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="my-2">
+                            <div class="toggle-header" data-filterslist="department">
+                                <h5 class="title is-5">Department</h5>
+                                <div class="toggle-icon" style="transform: rotate(-45deg);"></div>
+                            </div>
+                            <div class="toggle-content" data-filters="department">
+                                <select name="department" class="form-control select2_form_select" style="width: 90%;">
+                                    <option value="">Select Department</option>
+                                    @foreach ($departments as $department)
+                                        <option value="{{ $department->id }}"
+                                            {{ request()->get('department') == $department->id ? 'selected' : '' }}>
+                                            {{ $department->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -788,22 +822,7 @@
                             </div>
                         </div>
 
-                        <div class="my-2">
-                            <div class="toggle-header" data-filterslist="department">
-                                <h5 class="title is-5">Department</h5>
-                                <div class="toggle-icon" style="transform: rotate(-45deg);"></div>
-                            </div>
-                            <div class="toggle-content" data-filters="department">
-                                <select name="department" class="form-control select2_form_select" style="width: 90%;">
-                                    <option value="">Select Department</option>
-                                    @foreach ($departments as $department)
-                                        <option value="{{ $department->id }}"
-                                            {{ request()->get('department') == $department->id ? 'selected' : '' }}>
-                                            {{ $department->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
+
 
                         <div class="my-2">
                             <div class="toggle-header" data-filterslist="session">
@@ -839,22 +858,7 @@
                             </div>
                         </div>
 
-                        <div class="my-2">
-                            <div class="toggle-header" data-filterslist="country">
-                                <h5 class="title is-5">Country</h5>
-                                <div class="toggle-icon" style="transform: rotate(135deg);"></div>
-                            </div>
-                            <div class="toggle-content" data-filters="country" style="display: none">
-                                <select name="country" class="form-control select2_form_select" style="width: 90%;">
-                                    <option value="">Select Country</option>
-                                    @foreach ($countries as $country)
-                                        <option value="{{ @$country->id }}"
-                                            {{ request()->get('country') == $country->id ? 'selected' : '' }}>
-                                            {{ @$country->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
+
 
                     </div>
                 </div>

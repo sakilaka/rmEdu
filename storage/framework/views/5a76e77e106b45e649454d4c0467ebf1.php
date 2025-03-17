@@ -305,5 +305,6 @@
             </div>
         </div>
     </nav>
+    
 </header>
 <?php /**PATH C:\laragon\www\rminternational-20241015\resources\views/Frontend/layouts/parts/header.blade.php ENDPATH**/ ?>

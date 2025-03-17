@@ -39,6 +39,7 @@
                                         <th>Continent</th>
                                         <th>Country</th>
                                         <th>Address</th>
+                                        <th>Degree</th>
                                         {{-- <th>State</th> --}}
                                         {{-- <th>City</th> --}}
                                         <th class="text-center">Status</th>
@@ -54,9 +55,9 @@
                                                     height="30px">
                                             </td>
                                             <td
-                                                style="white-space: nowrap; 
-                                                        overflow: hidden; 
-                                                        text-overflow: ellipsis; 
+                                                style="white-space: nowrap;
+                                                        overflow: hidden;
+                                                        text-overflow: ellipsis;
                                                         max-width: 250px;">
                                                 <a href="{{ route('frontend.university_details', ['id' => $university->id]) }}"
                                                     data-toggle="tooltip" data-placement="top"
